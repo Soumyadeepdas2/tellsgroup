@@ -168,6 +168,22 @@ if ("IntersectionObserver" in window) {
 }
 
 
+// --- Yoga figure blessing: click/tap to toggle on touch devices ---
+const yogaFigure = document.querySelector(".yoga-figure");
+if (yogaFigure) {
+  // Toggle a class on click so touch users can trigger the blessing
+  yogaFigure.addEventListener("click", () => {
+    yogaFigure.classList.toggle("is-blessing");
+  });
+  // Remove the class when clicking elsewhere
+  document.addEventListener("click", (e) => {
+    if (!yogaFigure.contains(e.target)) {
+      yogaFigure.classList.remove("is-blessing");
+    }
+  });
+}
+
+
 // ------------------------------------------------------------------
 // Cat chatbot mascot — fixed bottom-right, directly above the
 // back-to-top arrow. Appears after scrolling down.

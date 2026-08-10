@@ -169,7 +169,7 @@
         <p class="eyebrow">What we believe</p>
         <h2>Focused media brands can feel sharp, human, and useful at the same time.</h2>
       </div>
-      <figure class="yoga-figure reveal-item" aria-hidden="true">
+      <figure class="yoga-figure reveal-item" tabindex="0" role="img" aria-label="Meditating figure giving a blessing">
         <svg class="yoga-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" focusable="false">
           <path class="yoga-blob" d="M86 368c-44-57-35-148 16-214C160 79 250 37 338 59c82 20 140 99 143 180 3 79-47 155-120 190-89 43-219 15-275-61Z"/>
           <g class="yoga-body">
@@ -182,12 +182,85 @@
             <ellipse class="yoga-foot" cx="218" cy="434" rx="17" ry="11"/>
             <ellipse class="yoga-foot" cx="342" cy="434" rx="17" ry="11"/>
             <path class="yoga-torso" d="M222 234 C218 268 222 300 232 328 C240 346 258 354 280 354 C302 354 320 346 328 328 C338 300 342 268 338 234 C336 218 322 212 280 212 C238 212 224 218 222 234 Z"/>
-            <path class="yoga-arm-ink arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
-            <path class="yoga-arm arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
+
+            <!-- Left arm (her left, our right) stays in lap -->
             <path class="yoga-arm-ink arm-right" d="M320 236 C 330 278, 326 318, 308 350"/>
             <path class="yoga-arm arm-right" d="M320 236 C 330 278, 326 318, 308 350"/>
-            <circle class="yoga-hand" cx="254" cy="352" r="13"/>
+
+            <!-- Right arm (her right, our left) in meditation mudra by default -->
+            <g class="yoga-arm-resting">
+              <path class="yoga-arm-ink arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
+              <path class="yoga-arm arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
+              <circle class="yoga-hand yoga-hand-resting" cx="254" cy="352" r="13"/>
+            </g>
             <circle class="yoga-hand" cx="306" cy="352" r="13"/>
+
+            <!-- Blessing mudra (abhaya) — hidden until hover -->
+            <g class="yoga-blessing" opacity="0">
+              <!-- divine saffron glow behind the raised palm -->
+              <circle class="yoga-blessing-glow" cx="190" cy="156" r="42"/>
+              <circle class="yoga-blessing-glow-ring" cx="190" cy="156" r="52"/>
+              <!-- raised right arm (ink outline + skin fill) -->
+              <path class="yoga-arm-ink yoga-blessing-arm-ink" d="M240 236 C 220 224 202 210 192 196" stroke-linecap="round"/>
+              <path class="yoga-arm yoga-blessing-arm" d="M240 236 C 220 224 202 210 192 196" stroke-linecap="round"/>
+              <!-- hand: abhaya/ashirvad mudra scaled around wrist joint (192, 196) -->
+              <g transform="translate(192, 196) scale(0.64) translate(-192, -196)">
+                <g class="yoga-blessing-hand">
+                  <path class="yoga-blessing-hand-outline" d="
+                    M 176 196
+                    C 170 178, 165 158, 165 140
+                    C 165 120, 167 106, 171 106
+                    C 175 106, 177 114, 177 120
+                    C 177 104, 179 90, 183 90
+                    C 187 90, 189 100, 189 112
+                    C 189 98, 191 82, 196 82
+                    C 201 82, 203 94, 203 108
+                    C 203 98, 204 86, 208 86
+                    C 212 86, 214 96, 213 114
+                    C 213 130, 211 142, 209 148
+                    C 213 142, 221 133, 230 128
+                    C 237 124, 244 128, 244 135
+                    C 244 144, 237 158, 228 170
+                    C 220 180, 214 188, 212 196
+                    Z"/>
+
+                  <!-- Vertical finger division lines extending down into the palm -->
+                  <path class="yoga-blessing-finger-line" d="M 177 118 C 177 132, 177 148, 177 160"/>
+                  <path class="yoga-blessing-finger-line" d="M 189 110 C 189 128, 189 146, 189 164"/>
+                  <path class="yoga-blessing-finger-line" d="M 203 106 C 203 126, 202 144, 202 162"/>
+
+                  <!-- Horizontal knuckle arc creases -->
+                  <path class="yoga-blessing-knuckle" d="M 167 124 Q 171 126 175 124"/>
+                  <path class="yoga-blessing-knuckle" d="M 168 136 Q 172 138 176 136"/>
+                  <path class="yoga-blessing-knuckle" d="M 179 110 Q 183 112 187 110"/>
+                  <path class="yoga-blessing-knuckle" d="M 179 128 Q 183 130 187 128"/>
+                  <path class="yoga-blessing-knuckle" d="M 191 104 Q 195 106 199 104"/>
+                  <path class="yoga-blessing-knuckle" d="M 191 124 Q 195 126 199 124"/>
+                  <path class="yoga-blessing-knuckle" d="M 204 106 Q 207 108 211 106"/>
+                  <path class="yoga-blessing-knuckle" d="M 203 126 Q 207 128 210 126"/>
+
+                  <!-- Palm creases (Ashirvad style as shown in image.png) -->
+                  <path class="yoga-blessing-palm-line" d="M 171 160 C 182 156, 195 156, 207 160"/>
+                  <path class="yoga-blessing-palm-line" d="M 175 170 C 187 168, 199 164, 209 152"/>
+                  <path class="yoga-blessing-palm-line" d="M 209 152 C 201 166, 197 178, 197 194"/>
+                </g>
+
+                <!-- Rudraksha mala (prayer bead bracelet wrapped around wrist) -->
+                <g class="yoga-blessing-mala">
+                  <circle class="yoga-mala-bead" cx="174" cy="196" r="5.5"/>
+                  <circle class="yoga-mala-bead" cx="183" cy="199" r="5.5"/>
+                  <circle class="yoga-mala-bead" cx="192" cy="200" r="5.5"/>
+                  <circle class="yoga-mala-bead" cx="201" cy="199" r="5.5"/>
+                  <circle class="yoga-mala-bead" cx="210" cy="195" r="5.5"/>
+                  
+                  <circle class="yoga-mala-bead-top" cx="177" cy="190" r="5"/>
+                  <circle class="yoga-mala-bead-top" cx="186" cy="192" r="5"/>
+                  <circle class="yoga-mala-bead-top" cx="195" cy="192" r="5"/>
+                  <circle class="yoga-mala-bead-top" cx="204" cy="190" r="5"/>
+                  <circle class="yoga-mala-guru" cx="192" cy="208" r="6.5"/>
+                </g>
+              </g>
+            </g>
           </g>
           <g class="yoga-head">
             <path class="yoga-neck" d="M262 204 h36 v22 h-36 z"/>
@@ -195,12 +268,33 @@
             <path class="yoga-hair" d="M236 158 C 234 108, 256 86, 280 84 C 304 86, 326 108, 324 158 C 322 134, 302 128, 280 128 C 258 128, 238 134, 236 158 Z"/>
             <circle class="yoga-bun" cx="280" cy="78" r="17"/>
             <rect class="yoga-tie" x="266" y="92" width="28" height="9" rx="4.5"/>
+
+            <!-- Closed (meditating) eyes — fade out on hover -->
             <path class="yoga-eye eye-left" d="M258 164 C 264 168, 270 168, 276 164"/>
             <path class="yoga-eye eye-right" d="M284 164 C 290 168, 296 168, 302 164"/>
+
+            <!-- Open eyes — hidden until hover -->
+            <g class="yoga-eyes-open" opacity="0">
+              <!-- eye whites (outlines) -->
+              <ellipse class="yoga-eye-open-outline" cx="267" cy="167" rx="8" ry="9"/>
+              <ellipse class="yoga-eye-open-outline" cx="293" cy="167" rx="8" ry="9"/>
+              <!-- pupils -->
+              <ellipse class="yoga-eye-pupil" cx="267" cy="168" rx="4.5" ry="6"/>
+              <ellipse class="yoga-eye-pupil" cx="293" cy="168" rx="4.5" ry="6"/>
+              <!-- catchlights -->
+              <circle class="yoga-eye-shine" cx="269" cy="165" r="1.8" fill="#fff"/>
+              <circle class="yoga-eye-shine" cx="295" cy="165" r="1.8" fill="#fff"/>
+              <!-- raised warm eyebrows for the "blessing" look -->
+              <path class="yoga-eyebrow" d="M256 153 Q 267 148 278 154"/>
+              <path class="yoga-eyebrow" d="M282 154 Q 293 148 304 153"/>
+            </g>
+
+            <!-- Smile (closed-mouth, soft; gets a subtle lift in CSS when blessing) -->
             <path class="yoga-smile" d="M272 188 C 276 192, 284 192, 288 188"/>
+            <path class="yoga-smile-blessing" d="M270 188 C 275 194, 285 194, 290 188" opacity="0"/>
             <circle class="yoga-bindi" cx="280" cy="142" r="4.5"/>
           </g>
-          <g transform="translate(96 26) scale(0.7)">
+          <g transform="translate(35 -20) scale(0.55)">
             <path class="yoga-spark" d="M106 116l12 24 24 12-24 12-12 24-12-24-24-12 24-12 12-24Z"/>
           </g>
           <g class="yoga-dots">
@@ -335,7 +429,7 @@
       </div>
 
       <div class="contact-closer">
-          <a class="round-button dark" href="mailto:YOUR_EMAIL@example.com">
+        <a class="round-button dark" href="mailto:YOUR_EMAIL@example.com">
   Hello@tellsgroup.com
 </a>
         <div class="social-row">
@@ -453,4 +547,6 @@
   </div>
 
   <script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28db66628c7c0e2',t:'MTc4NjM1MTQwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28e2ba208e746f6',t:'MTc4NjM1NjIwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28db66628c7c0e2',t:'MTc4NjM1MTQwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28f031bf8214015',t:'MTc4NjM2NTAyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f"}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28f195a6b849648',t:'MTc4NjM2NTk0MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f"}' crossorigin="anonymous"></script>
+</body></html>

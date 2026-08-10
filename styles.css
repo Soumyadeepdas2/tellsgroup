@@ -737,6 +737,8 @@ h2 {
   justify-self: end;
   width: min(100%, 420px);
   z-index: 1;
+  cursor: pointer;
+  outline: none;
 }
 
 .yoga-svg {
@@ -750,6 +752,256 @@ h2 {
 
 .yoga-figure:hover .yoga-svg {
   transform: translateY(-10px) rotate(-1.5deg) scale(1.02);
+}
+
+/* ----- Blessing mudra on hover / keyboard focus / tap ----- */
+/* Symmetric in/out timings so eyes don't "drop" — same curve both directions. */
+
+/* Closed (meditating) eyes and resting smile — softened out on hover (lifted by base transition rule below) */
+.yoga-figure:hover .yoga-eye,
+.yoga-figure:focus-within .yoga-eye,
+.yoga-figure.is-blessing .yoga-eye {
+  opacity: 0;
+}
+.yoga-figure:hover .yoga-smile,
+.yoga-figure:focus-within .yoga-smile,
+.yoga-figure.is-blessing .yoga-smile {
+  opacity: 0;
+}
+
+/* Open eyes: scale vertically from closed (slits) → fully open like eyelids lifting.
+   Each eye element scales around its own center for a clean "eyelid" open/close. */
+.yoga-eyes-open > * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.yoga-eyes-open {
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms;
+}
+.yoga-eyes-open .yoga-eye-open-outline {
+  transform: scaleY(0.08);
+  transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1) 100ms;
+}
+.yoga-eyes-open .yoga-eye-pupil {
+  transform: scaleY(0.08);
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1) 140ms;
+}
+.yoga-eyes-open .yoga-eye-shine {
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 200ms ease 320ms, transform 260ms cubic-bezier(0.2,0.8,0.2,1) 300ms;
+}
+.yoga-eyes-open .yoga-eyebrow {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 260ms ease 160ms, transform 300ms cubic-bezier(0.2,0.8,0.2,1) 140ms;
+}
+.yoga-figure:hover .yoga-eyes-open,
+.yoga-figure:focus-within .yoga-eyes-open,
+.yoga-figure.is-blessing .yoga-eyes-open {
+  opacity: 1;
+}
+.yoga-figure:hover .yoga-eyes-open .yoga-eye-open-outline,
+.yoga-figure:focus-within .yoga-eyes-open .yoga-eye-open-outline,
+.yoga-figure.is-blessing .yoga-eyes-open .yoga-eye-open-outline {
+  transform: scaleY(1);
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms;
+}
+.yoga-figure:hover .yoga-eyes-open .yoga-eye-pupil,
+.yoga-figure:focus-within .yoga-eyes-open .yoga-eye-pupil,
+.yoga-figure.is-blessing .yoga-eyes-open .yoga-eye-pupil {
+  transform: scaleY(1);
+  transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1) 260ms;
+}
+.yoga-figure:hover .yoga-eyes-open .yoga-eye-shine,
+.yoga-figure:focus-within .yoga-eyes-open .yoga-eye-shine,
+.yoga-figure.is-blessing .yoga-eyes-open .yoga-eye-shine {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 220ms ease 520ms, transform 260ms cubic-bezier(0.2,0.8,0.2,1) 500ms;
+}
+.yoga-figure:hover .yoga-eyes-open .yoga-eyebrow,
+.yoga-figure:focus-within .yoga-eyes-open .yoga-eyebrow,
+.yoga-figure.is-blessing .yoga-eyes-open .yoga-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 260ms ease 300ms, transform 320ms cubic-bezier(0.2,0.8,0.2,1) 280ms;
+}
+
+/* Eye outlines (whites) are cream, pupils ink */
+.yoga-eye-open-outline {
+  fill: #fff6ec;
+  stroke: var(--ink);
+  stroke-width: 4;
+}
+.yoga-eye-pupil {
+  fill: var(--ink);
+}
+.yoga-eyebrow {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+.yoga-eye-shine { pointer-events: none; }
+
+/* Warmer, more open smile when blessing */
+.yoga-smile-blessing {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 260ms ease 260ms,
+    transform 300ms cubic-bezier(0.2,0.8,0.2,1) 260ms;
+}
+.yoga-figure:hover .yoga-smile-blessing,
+.yoga-figure:focus-within .yoga-smile-blessing,
+.yoga-figure.is-blessing .yoga-smile-blessing {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 260ms ease 440ms,
+    transform 300ms cubic-bezier(0.2,0.8,0.2,1) 440ms;
+}
+
+/* Resting (meditation) right arm/hand fades out as blessing arm fades in */
+.yoga-arm-resting {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 280ms ease, transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.yoga-figure:hover .yoga-arm-resting,
+.yoga-figure:focus-within .yoga-arm-resting,
+.yoga-figure.is-blessing .yoga-arm-resting {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+/* Blessing arm group: fades in and lifts up from the lap for a graceful "raise" */
+.yoga-blessing {
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 240px 236px;
+  transform: translateY(10px) rotate(-8deg);
+  transition:
+    opacity 320ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1) 100ms;
+}
+.yoga-figure:hover .yoga-blessing,
+.yoga-figure:focus-within .yoga-blessing,
+.yoga-figure.is-blessing .yoga-blessing {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+  transition:
+    opacity 280ms ease 220ms,
+    transform 460ms cubic-bezier(0.2, 0.8, 0.2, 1) 180ms;
+}
+
+.yoga-blessing-arm-ink {
+  stroke: var(--ink);
+  stroke-width: 28;
+  stroke-linecap: round;
+  fill: none;
+}
+.yoga-blessing-arm {
+  stroke: #de9368;
+  stroke-width: 16;
+  stroke-linecap: round;
+  fill: none;
+}
+
+/* Hand: single outline+fill path now (outline is the stroke, fill is skin) */
+.yoga-blessing-hand-outline {
+  fill: #de9368;
+  stroke: var(--ink);
+  stroke-width: 6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.yoga-blessing-hand-fill { display: none; }
+.yoga-blessing-thumb-outline,
+.yoga-blessing-thumb { display: none; }
+.yoga-blessing-finger-line {
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.45;
+}
+.yoga-blessing-knuckle {
+  stroke-width: 1.4;
+  opacity: 0.38;
+}
+.yoga-blessing-palm-line {
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.4;
+}
+.yoga-blessing-palm-line-soft {
+  stroke-width: 1.4;
+  opacity: 0.32;
+}
+.yoga-blessing-thumb-crease {
+  stroke-width: 1.6;
+  opacity: 0.4;
+}
+
+/* Divine glow behind the raised hand (saffron halo) */
+.yoga-blessing-glow {
+  fill: #ff8a2b;
+  opacity: 0;
+  filter: blur(12px);
+  transform-origin: 190px 156px;
+  transform: scale(0.7);
+  transition: opacity 320ms ease, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.yoga-blessing-glow-ring {
+  fill: none;
+  stroke: #ffd300;
+  stroke-width: 4;
+  opacity: 0;
+  transform-origin: 190px 156px;
+  transform: scale(0.7);
+  transition: opacity 320ms ease 120ms, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1) 100ms;
+}
+.yoga-figure:hover .yoga-blessing-glow,
+.yoga-figure:focus-within .yoga-blessing-glow,
+.yoga-figure.is-blessing .yoga-blessing-glow {
+  opacity: 0.5;
+  transform: scale(1);
+  animation: blessingGlowPulse 2.4s ease-in-out infinite 600ms;
+  transition: opacity 360ms ease 240ms, transform 460ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms;
+}
+.yoga-figure:hover .yoga-blessing-glow-ring,
+.yoga-figure:focus-within .yoga-blessing-glow-ring,
+.yoga-figure.is-blessing .yoga-blessing-glow-ring {
+  opacity: 0.7;
+  transform: scale(1);
+  animation: blessingGlowPulse 2.4s ease-in-out infinite 800ms;
+  transition: opacity 360ms ease 300ms, transform 460ms cubic-bezier(0.2, 0.8, 0.2, 1) 280ms;
+}
+@keyframes blessingGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%      { transform: scale(1.12); opacity: 0.78; }
+}
+
+/* Rudraksha mala beads */
+.yoga-mala-bead {
+  fill: #c22b0c;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.yoga-mala-bead-top {
+  fill: #e64a19;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.yoga-mala-guru {
+  fill: #ff8a2b;
 }
 
 .yoga-blob {
@@ -808,6 +1060,8 @@ h2 {
   stroke: var(--ink);
   stroke-width: 5;
   stroke-linecap: round;
+  opacity: 1;
+  transition: opacity 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .yoga-bindi {
