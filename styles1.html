@@ -335,9 +335,7 @@
       </div>
 
       <div class="contact-closer">
-        <a class="round-button dark" href="mailto:YOUR_EMAIL@example.com">
-  Hello@tellsgroup.com
-</a>
+        <a class="round-button dark" href="/cdn-cgi/l/email-protection#2a424f4646456a5e4f4646594d58455f5a04494547"><span class="__cf_email__" data-cfemail="f8909d949497b88c9d94948b9f8a978d88d69b9795">[email&#160;protected]</span></a>
         <div class="social-row">
           <a class="social-chip" href="https://x.com/tellsgroup" target="_blank" rel="noopener noreferrer" aria-label="Tellsgroup on X">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
@@ -368,90 +366,6 @@
     </svg>
   </button>
 
-
-  <!-- Cat chatbot mascot — fixed directly above the back-to-top arrow -->
-  <div id="catChatbot">
-    <div id="catTooltip" role="status" aria-live="polite">
-      <span>Meow! Need help? 🐾</span>
-    </div>
-
-    <button id="catBtn" type="button" aria-label="Open cat chat" aria-expanded="false" aria-controls="catPanel">
-      <!-- Cat face only -->
-      <svg class="cat-btn-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <!-- Ears -->
-        <path class="cat-ear" d="M10 22 L15 6 L24 18 Z"/>
-        <path class="cat-ear" d="M50 22 L45 6 L36 18 Z"/>
-        <path class="cat-ear-inner" d="M13 19 L16 10 L22 17 Z"/>
-        <path class="cat-ear-inner" d="M47 19 L44 10 L38 17 Z"/>
-        <!-- Face -->
-        <circle class="cat-face-circle" cx="30" cy="34" r="22"/>
-        <!-- Cheeks -->
-        <circle class="cat-blush" cx="18" cy="38" r="3.5"/>
-        <circle class="cat-blush" cx="42" cy="38" r="3.5"/>
-        <!-- Open eyes -->
-        <g class="cat-eyes-open">
-          <ellipse class="cat-eye" cx="22" cy="31" rx="3" ry="4.5"/>
-          <ellipse class="cat-eye" cx="38" cy="31" rx="3" ry="4.5"/>
-          <circle class="cat-eye-shine" cx="23" cy="29.5" r="1"/>
-          <circle class="cat-eye-shine" cx="39" cy="29.5" r="1"/>
-        </g>
-        <!-- Closed (blinking) eyes -->
-        <g class="cat-eyes-closed">
-          <path class="cat-eye-closed" d="M18 32 Q 22 28 26 32"/>
-          <path class="cat-eye-closed" d="M34 32 Q 38 28 42 32"/>
-        </g>
-        <!-- Nose + mouth -->
-        <path class="cat-nose" d="M28 39 L32 39 L30 42 Z"/>
-        <path class="cat-mouth" d="M30 42 Q 27 46 24 44 M30 42 Q 33 46 36 44"/>
-        <!-- Whiskers -->
-        <path class="cat-whisker" d="M14 38 L4 36"/>
-        <path class="cat-whisker" d="M14 42 L4 44"/>
-        <path class="cat-whisker" d="M46 38 L56 36"/>
-        <path class="cat-whisker" d="M46 42 L56 44"/>
-      </svg>
-
-      <span id="catDot" aria-hidden="true">1</span>
-    </button>
-
-    <div id="catPanel" role="dialog" aria-label="Chat with the Tells Cat" aria-hidden="true">
-      <div class="cat-panel-header">
-        <div class="cat-panel-avatar">
-          <span>🐱</span>
-          <span class="cat-panel-status" title="Online"></span>
-        </div>
-        <div class="cat-panel-title">
-          <strong>Tells Cat</strong>
-          <small>Online · Replies instantly</small>
-        </div>
-        <button id="catClose" type="button" aria-label="Close chat">
-          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
-        </button>
-      </div>
-      <div class="cat-panel-messages" id="catMessages">
-        <div class="cat-msg cat-msg-bot">
-          <span class="cat-msg-avatar" aria-hidden="true">🐱</span>
-          <div class="cat-msg-bubble"><p>Hi, I'm the <strong>Tells Cat</strong>! 🐾 Welcome to Tellsgroup.</p></div>
-        </div>
-        <div class="cat-msg cat-msg-bot">
-          <span class="cat-msg-avatar" aria-hidden="true">🐱</span>
-          <div class="cat-msg-bubble"><p>Try a quick reply or type me a message!</p></div>
-        </div>
-      </div>
-      <div class="cat-panel-quick" id="catQuick">
-        <button type="button" data-intent="brands">🏷️ Show brands</button>
-        <button type="button" data-intent="about">🤔 About</button>
-        <button type="button" data-intent="contact">📬 Contact</button>
-        <button type="button" data-intent="pet">✋ Pet me</button>
-      </div>
-      <form class="cat-panel-input" id="catForm">
-        <input type="text" id="catInput" placeholder="Type a message..." autocomplete="off" aria-label="Type your message">
-        <button type="submit" aria-label="Send">
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" fill="currentColor"/></svg>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28db66628c7c0e2',t:'MTc4NjM1MTQwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f"}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28e357f3e937b08',t:'MTc4NjM1NjYwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a28db66628c7c0e2',t:'MTc4NjM1MTQwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
