@@ -1500,44 +1500,34 @@ h2 {
   border-radius: 14px;
   background: var(--ink);
   box-shadow: 4px 4px 0 rgba(23, 17, 15, 0.35);
-  cursor: pointer;
-  text-decoration: none;
   transition:
     transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    background-color 200ms ease,
-    border-color 200ms ease,
+    background 200ms ease,
     box-shadow 200ms ease;
 }
 
 .social-chip svg {
   width: 22px;
   height: 22px;
-  display: block;
-  pointer-events: none;
-}
-
-.social-chip svg path {
   fill: #ff8a2b;
   transition: fill 200ms ease;
 }
 
 .social-chip:hover,
 .social-chip:focus-visible {
-  background-color: #ff8a2b;
-  border-color: var(--ink);
+  background: #ff8a2b;
   box-shadow: 6px 6px 0 rgba(23, 17, 15, 0.35);
   transform: translate(-2px, -2px);
   outline: none;
 }
 
-.social-chip:hover svg path,
-.social-chip:focus-visible svg path {
+.social-chip:hover svg,
+.social-chip:focus-visible svg {
   fill: var(--ink);
 }
 
 .social-chip:active {
-  transform: translate(-1px, -1px) scale(0.94);
-  box-shadow: 2px 2px 0 rgba(23, 17, 15, 0.35);
+  transform: scale(0.92);
 }
 
 .contact-copy {
@@ -1545,9 +1535,7 @@ h2 {
   position: relative;
   z-index: 1;
   margin-top: clamp(18px, 3vw, 30px);
-  /* extra bottom space to clear the cat + back-to-top FABs
-     so they never cover the copyright or social chips */
-  padding-bottom: clamp(140px, 20vh, 180px);
+  padding-bottom: clamp(26px, 4vw, 44px);
   color: rgba(243, 234, 219, 0.6);
   font-size: 0.85rem;
   font-weight: 700;
@@ -1894,16 +1882,13 @@ h2 {
   /* Align horizontally with .to-top arrow (52px wide). Cat is 56px,
      so shift 2px left to center on the arrow. */
   right: calc(clamp(18px, 4vw, 64px) - 2px);
-  /* Sit above the arrow with enough clearance that the cat doesn't
-     cover the social chips (Facebook, etc.) in the contact section.
-     Arrow bottom + arrow height + gap (26px gives ~16px clearance
-     above the chip row at desktop). */
-  bottom: calc(clamp(18px, 3vw, 32px) + 52px + 26px);
+  /* Sit directly above the arrow: arrow bottom + arrow height + small gap */
+  bottom: calc(clamp(18px, 3vw, 32px) + 52px + 14px);
   z-index: 9999;
-  /* Container sized exactly to the button — panel & tooltip are
-     absolutely positioned so they never push the button around. */
-  width: 56px;
-  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
   pointer-events: none;
   font-family: "Manrope", Arial, sans-serif;
   opacity: 0;
@@ -1913,15 +1898,13 @@ h2 {
 #catChatbot.cat-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
-/* Greeting bubble — absolutely positioned ABOVE the button,
-   out of flow so it never affects the button's location. */
+/* Greeting bubble */
 #catTooltip {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  right: 0;
-  max-width: 220px;
+  position: relative;
+  max-width: 200px;
   padding: 9px 14px;
   background: #fff6ec;
   color: var(--ink);
@@ -1935,7 +1918,6 @@ h2 {
   transform: translateY(6px) scale(0.9);
   pointer-events: none;
   transition: opacity 220ms ease, transform 220ms cubic-bezier(0.2,0.8,0.2,1);
-  white-space: normal;
 }
 #catTooltip.tooltip-visible {
   opacity: 1;
@@ -1944,8 +1926,7 @@ h2 {
 
 /* ----- Cat FAB button ----- */
 #catBtn {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 56px;
   height: 56px;
   padding: 0;
@@ -1957,7 +1938,6 @@ h2 {
   cursor: pointer;
   pointer-events: auto;
   outline: none;
-  z-index: 2;
   transition: transform 200ms cubic-bezier(0.2,0.8,0.2,1),
               box-shadow 200ms ease, background 200ms ease;
 }
@@ -2037,13 +2017,8 @@ h2 {
   100% { transform: scale(1); }
 }
 
-/* ----- Chat panel -----
-   Absolutely positioned above the button (out of flow) so open/close
-   and message growth never push the cat button off its anchor. */
+/* ----- Chat panel ----- */
 #catPanel {
-  position: absolute;
-  bottom: calc(100% + 12px);
-  right: 0;
   width: 320px;
   max-width: calc(100vw - 36px);
   max-height: min(460px, calc(100vh - 160px));
@@ -2055,21 +2030,15 @@ h2 {
   box-shadow: 8px 10px 0 var(--ink);
   overflow: hidden;
   opacity: 0;
-  visibility: hidden;
   transform: translateY(10px) scale(0.95);
   transform-origin: bottom right;
   pointer-events: none;
-  transition:
-    opacity 260ms ease,
-    transform 300ms cubic-bezier(0.2,0.8,0.2,1),
-    visibility 0s linear 260ms;
+  transition: opacity 260ms ease, transform 300ms cubic-bezier(0.2,0.8,0.2,1);
 }
 #catPanel.panel-open {
   opacity: 1;
-  visibility: visible;
   transform: translateY(0) scale(1);
   pointer-events: auto;
-  transition: opacity 260ms ease, transform 300ms cubic-bezier(0.2,0.8,0.2,1), visibility 0s;
 }
 
 .cat-panel-header {
@@ -2254,30 +2223,30 @@ h2 {
 }
 .cat-panel-input button[type="submit"]:hover { background: var(--ink); transform: scale(1.08) rotate(-8deg); }
 
-/* Desktop (≥980px): base rule already positions the cat correctly */
+/* Desktop (≥980px): vertical space is fine from base rule, but tighten
+   the gap so the cat sits flush above the arrow. */
 @media (min-width: 980px) {
   #catChatbot {
     right: calc(clamp(18px, 4vw, 64px) - 2px);
-    bottom: calc(clamp(18px, 3vw, 32px) + 52px + 26px);
-    width: 56px;
-    height: 56px;
+    bottom: calc(clamp(18px, 3vw, 32px) + 52px + 14px);
   }
 }
 
 /* Mobile tweaks: arrow is 44×44, cat is 48×48 (centered by shifting
-   2px left). Increase gap to 22px so the cat clears social chips. */
+   2px left). Recompute bottom based on the 44px arrow size. */
 @media (max-width: 680px) {
   #catChatbot {
     right: calc(clamp(18px, 4vw, 64px) - 2px);
-    bottom: calc(clamp(18px, 3vw, 32px) + 44px + 22px);
-    width: 48px;
-    height: 48px;
+    bottom: calc(clamp(18px, 3vw, 32px) + 44px + 12px);
   }
   #catBtn { width: 48px; height: 48px; }
   #catPanel {
-    width: min(320px, calc(100vw - 28px));
-    max-width: calc(100vw - 28px);
+    position: fixed;
+    right: 14px;
+    /* panel above cat (48) + gap (12) */
+    bottom: calc(clamp(18px, 3vw, 32px) + 44px + 12px + 48px + 10px);
+    width: calc(100vw - 28px);
+    max-width: none;
     max-height: 60vh;
-    right: 0;
   }
 }
