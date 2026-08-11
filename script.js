@@ -552,3 +552,34 @@ if (yogaFigure) {
     botReply(respondTo(val));
   });
 })();
+
+/* ---- Scroll progress (percentage + bar under the menu button) ---- */
+(function () {
+  var out = document.getElementById("scrollProgress");
+  if (!out) return;
+  var badge = out.closest(".scroll-progress") || out.parentNode;
+  var SHOW_AT = 10; // only appears once the page is 10% scrolled
+
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var doc = document.documentElement;
+    var max = (doc.scrollHeight - window.innerHeight);
+    var pct = max > 0 ? Math.round((window.scrollY / max) * 100) : 0;
+    if (pct < 0) pct = 0;
+    if (pct > 100) pct = 100;
+    out.textContent = pct + "%";
+    badge.classList.toggle("is-visible", pct >= SHOW_AT);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  update();
+})();

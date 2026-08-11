@@ -84,6 +84,46 @@ a {
   transform: scale(0.92);
 }
 
+/* Scroll progress readout, tucked under the menu button */
+/* Scroll percentage badge — same 52px square, border and shadow as .menu-toggle */
+.scroll-progress {
+  position: absolute;
+  top: calc(clamp(14px, 2.6vw, 26px) + 52px + 10px);
+  right: clamp(18px, 4vw, 64px);
+  z-index: 2;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #ff8a2b;
+  border-radius: 16px;
+  background: var(--ink);
+  box-shadow: 4px 4px 0 rgba(23, 17, 15, 0.35);
+  pointer-events: none;
+  /* hidden until the reader is 10% down the page */
+  opacity: 0;
+  transform: translateY(-6px) scale(0.9);
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.scroll-progress.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-progress-value {
+  font-family: "Space Grotesk", "Manrope", Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #ff8a2b;
+  font-variant-numeric: tabular-nums;
+}
+
 .menu-toggle-lines {
   position: relative;
   display: block;
@@ -324,10 +364,10 @@ body.menu-open {
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.48fr);
-  gap: clamp(28px, 5vw, 72px);
+  gap: clamp(24px, 3.2vw, 46px);
   align-items: center;
   /* extra top padding so the floating logo never sits on the headline */
-  padding: clamp(130px, 16vh, 190px) clamp(20px, 4vw, 64px) clamp(56px, 7vw, 100px);
+  padding: clamp(92px, 11vh, 140px) clamp(20px, 4vw, 64px) clamp(40px, 4vw, 60px);
   overflow: hidden;
 }
 
@@ -448,7 +488,9 @@ h3 {
 }
 
 h1 {
-  font-size: 12rem;
+  /* fluid: 10vw keeps the headline inside its grid column at every width,
+     22vh stops it eating the fold on short screens, 12rem caps it on wide ones */
+  font-size: min(12rem, 10vw, 22vh);
   line-height: 0.78;
   text-transform: uppercase;
 }
@@ -459,7 +501,9 @@ h2 {
 }
 
 .hero-visual {
-  min-height: 540px;
+  /* shrinks with the viewport on short screens so the art + headline + CTA
+     still fit the fold; capped at the artwork's natural 540px */
+  min-height: min(540px, 60vh);
 }
 
 .thinker-animation {
@@ -467,7 +511,7 @@ h2 {
   right: 0;
   bottom: 0;
   width: min(520px, 100%);
-  height: 520px;
+  height: min(520px, 58vh);
   overflow: visible;
   cursor: pointer;
 }
@@ -1810,10 +1854,13 @@ h2 {
 .brand-card::before {
   content: "";
   position: absolute;
-  inset: auto -18% -48% auto;
+  inset: auto -18% -20% auto;
   z-index: -1;
-  width: 190px;
-  height: 190px;
+  /* sized from the card itself so the reveal keeps the same proportion of
+     ink visible at every card width (fixed px buried small cards in red) */
+  width: 51%;
+  aspect-ratio: 1;
+  height: auto;
   border-radius: 50%;
   background:
     radial-gradient(circle at 32% 32%, var(--cream) 0 4px, transparent 5px),
@@ -1869,7 +1916,7 @@ h2 {
 .brand-card:hover::before,
 .brand-card:focus-visible::before {
   border-radius: 30%;
-  transform: scale(4.7) rotate(18deg);
+  transform: scale(2.6) rotate(18deg);
 }
 
 .brand-card:hover::after,
@@ -1918,7 +1965,9 @@ h2 {
 
 .brand-card:hover span,
 .brand-card:focus-visible span {
-  color: var(--ink);
+  /* cream, not ink: the label often sits on the red blob at small card
+     widths, where dark-on-red was unreadable */
+  color: var(--cream);
 }
 
 .brand-card strong {
@@ -2338,6 +2387,17 @@ h2 {
     min-height: 420px;
   }
 
+  /* single column: centre the art in its own row instead of letting the
+     520px-tall absolute box ride up into the headline */
+  .thinker-animation {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(460px, 100%);
+    height: 420px;
+    margin: 0 auto;
+  }
+
   .hero-bottom,
   .brand-tools {
     align-items: flex-start;
@@ -2380,6 +2440,17 @@ h2 {
   .to-top {
     width: 44px;
     height: 44px;
+  }
+
+  /* menu button is 44px at this breakpoint, so match it */
+  .scroll-progress {
+    top: calc(clamp(14px, 2.6vw, 26px) + 44px + 10px);
+    width: 44px;
+    height: 44px;
+  }
+
+  .scroll-progress-value {
+    font-size: 0.7rem;
   }
 
   .hero-visual {

@@ -33,6 +33,11 @@
       </span>
     </button>
 
+    <!-- live scroll percentage, sits under the menu button -->
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-value" id="scrollProgress">0%</span>
+    </div>
+
     <div class="mobile-nav" id="mobileNav" hidden>
       <nav class="mobile-nav-panel" aria-label="Navigation">
         <a href="#goals" data-mobile-link style="--i: 0">
@@ -455,24 +460,24 @@
       </div>
 
       <div class="brands-grid" id="brandsGrid">
-        <a class="brand-card" href="https://worldtells.com" data-category="news"><span>World news</span><strong>WorldTells</strong><p>Global affairs, explainers, and stories from around the world.</p></a>
-        <a class="brand-card" href="https://bharattells.com" data-category="news"><span>India</span><strong>BharatTells</strong><p>Policy, culture, business, and public life from across India.</p></a>
-        <a class="brand-card" href="https://crickettells.com" data-category="sports"><span>Cricket</span><strong>CricketTells</strong><p>Matches, players, records, leagues, and cricket culture.</p></a>
-        <a class="brand-card" href="https://businesstells.com" data-category="news"><span>Business</span><strong>BusinessTells</strong><p>Companies, startups, markets, leadership, and enterprise news.</p></a>
-        <a class="brand-card" href="https://techtells.com" data-category="knowledge"><span>Technology</span><strong>TechTells</strong><p>AI, gadgets, apps, cybersecurity, and digital shifts.</p></a>
-        <a class="brand-card" href="https://entertainmenttells.com" data-category="lifestyle"><span>Entertainment</span><strong>EntertainmentTells</strong><p>Films, streaming, celebrities, music, and pop culture.</p></a>
-        <a class="brand-card" href="https://healthtells.com" data-category="lifestyle"><span>Health</span><strong>HealthTells</strong><p>Wellness, fitness, medicine, mental health, and nutrition.</p></a>
-        <a class="brand-card" href="https://traveltells.com" data-category="lifestyle"><span>Travel</span><strong>TravelTells</strong><p>Destinations, itineraries, budget guides, and travel news.</p></a>
-        <a class="brand-card" href="https://educationtells.com" data-category="knowledge"><span>Education</span><strong>EducationTells</strong><p>Exams, careers, learning resources, and student life.</p></a>
-        <a class="brand-card" href="https://sciencetells.com" data-category="knowledge"><span>Science</span><strong>ScienceTells</strong><p>Space, climate, research, discoveries, and science explainers.</p></a>
-        <a class="brand-card" href="https://financetells.com" data-category="news"><span>Finance</span><strong>FinanceTells</strong><p>Personal finance, investing, banking, taxes, and market trends.</p></a>
-        <a class="brand-card" href="https://autotells.com" data-category="lifestyle"><span>Auto</span><strong>AutoTells</strong><p>Cars, bikes, EVs, reviews, motorsport, and buying guides.</p></a>
-        <a class="brand-card" href="https://foodtells.com" data-category="lifestyle"><span>Food</span><strong>FoodTells</strong><p>Recipes, restaurants, food culture, and kitchen inspiration.</p></a>
-        <a class="brand-card" href="https://fashiontells.com" data-category="lifestyle"><span>Fashion</span><strong>FashionTells</strong><p>Style, beauty, trends, designers, and shopping ideas.</p></a>
-        <a class="brand-card" href="https://politicstells.com" data-category="news"><span>Politics</span><strong>PoliticsTells</strong><p>Elections, policy, governance, and public debate.</p></a>
-        <a class="brand-card" href="https://sportstells.com" data-category="sports"><span>Sports</span><strong>SportsTells</strong><p>Football, tennis, athletics, Olympics, and sports personalities.</p></a>
-        <a class="brand-card" href="https://gamingtells.com" data-category="lifestyle"><span>Gaming</span><strong>GamingTells</strong><p>Games, esports, streamers, reviews, and gaming culture.</p></a>
-        <a class="brand-card" href="https://startuptells.com" data-category="knowledge"><span>Startups</span><strong>StartupTells</strong><p>Founders, funding, product stories, and startup ecosystems.</p></a>
+        <a class="brand-card" href="https://instagram.com/worldtells" data-category="news"><span>World news</span><strong>WorldTells</strong><p>Global affairs, explainers, and stories from around the world.</p></a>
+        <a class="brand-card" href="https://instagram.com/bharatells" data-category="news"><span>India</span><strong>BharatTells</strong><p>Policy, culture, business, and public life from across India.</p></a>
+        <a class="brand-card" href="https://instagram.com/cricketells" data-category="sports"><span>Cricket</span><strong>CricketTells</strong><p>Matches, players, records, leagues, and cricket culture.</p></a>
+        <a class="brand-card" href="https://instagram.com/cashtells" data-category="news"><span>Business</span><strong>BusinessTells</strong><p>Companies, startups, markets, leadership, and enterprise news.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="knowledge"><span>Technology</span><strong>TechTells</strong><p>AI, gadgets, apps, cybersecurity, and digital shifts.</p></a>
+        <a class="brand-card" href="https://instagram.com/filmytells" data-category="lifestyle"><span>Entertainment</span><strong>EntertainmentTells</strong><p>Films, streaming, celebrities, music, and pop culture.</p></a>
+        <a class="brand-card" href="https://instagram.com/healthtells" data-category="lifestyle"><span>Health</span><strong>HealthTells</strong><p>Wellness, fitness, medicine, mental health, and nutrition.</p></a>
+        <a class="brand-card" href="https://instagram.com/tourtells" data-category="lifestyle"><span>Travel</span><strong>TravelTells</strong><p>Destinations, itineraries, budget guides, and travel news.</p></a>
+        <a class="brand-card" href="https://instagram.com/carrertells" data-category="knowledge"><span>Education</span><strong>EducationTells</strong><p>Exams, careers, learning resources, and student life.</p></a>
+        <a class="brand-card" href="https://instagram.com/galaxytells" data-category="knowledge"><span>Science</span><strong>ScienceTells</strong><p>Space, climate, research, discoveries, and science explainers.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="news"><span>Finance</span><strong>FinanceTells</strong><p>Personal finance, investing, banking, taxes, and market trends.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="lifestyle"><span>Auto</span><strong>AutoTells</strong><p>Cars, bikes, EVs, reviews, motorsport, and buying guides.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="lifestyle"><span>Food</span><strong>FoodTells</strong><p>Recipes, restaurants, food culture, and kitchen inspiration.</p></a>
+        <a class="brand-card" href="https://instagram.com/publictells" data-category="lifestyle"><span>Fashion</span><strong>FashionTells</strong><p>Style, beauty, trends, designers, and shopping ideas.</p></a>
+        <a class="brand-card" href="https://instagram.com/policytells" data-category="news"><span>Politics</span><strong>PoliticsTells</strong><p>Elections, policy, governance, and public debate.</p></a>
+        <a class="brand-card" href="https://instagram.com/sportstells" data-category="sports"><span>Sports</span><strong>SportsTells</strong><p>Football, tennis, athletics, Olympics, and sports personalities.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="lifestyle"><span>Gaming</span><strong>GamingTells</strong><p>Games, esports, streamers, reviews, and gaming culture.</p></a>
+        <a class="brand-card" href="https://instagram.com/tellsgroup" data-category="knowledge"><span>Startups</span><strong>StartupTells</strong><p>Founders, funding, product stories, and startup ecosystems.</p></a>
       </div>
     </section>
 
@@ -486,17 +491,17 @@
       </div>
 
       <div class="contact-cards">
-        <a class="contact-card" href="mailto:hello@tellsgroup.com">
+        <a class="contact-card" href="/cdn-cgi/l/email-protection#fa929f969695ba8e9f9696899d88958f8ad4999597">
           <span class="contact-card-index">01</span>
           <strong>Launch a brand</strong>
           <p>New verticals, naming, positioning.</p>
         </a>
-        <a class="contact-card" href="mailto:hello@tellsgroup.com">
+        <a class="contact-card" href="/cdn-cgi/l/email-protection#533b363f3f3c1327363f3f2034213c26237d303c3e">
           <span class="contact-card-index">02</span>
           <strong>Editorial partnership</strong>
           <p>Collaborations and syndication.</p>
         </a>
-        <a class="contact-card" href="mailto:hello@tellsgroup.com">
+        <a class="contact-card" href="/cdn-cgi/l/email-protection#85ede0e9e9eac5f1e0e9e9f6e2f7eaf0f5abe6eae8">
           <span class="contact-card-index">03</span>
           <strong>Press &amp; media</strong>
           <p>Interviews, quotes, background.</p>
@@ -504,7 +509,7 @@
       </div>
 
       <div class="contact-closer">
-        <a class="round-button dark" href="mailto:hello@tellsgroup.com">hello@tellsgroup.com</a>
+        <a class="round-button dark" href="/cdn-cgi/l/email-protection#9af2fff6f6f5daeefff6f6e9fde8f5efeab4f9f5f7"><span class="__cf_email__" data-cfemail="7c14191010133c081910100f1b0e13090c521f1311">[email&#160;protected]</span></a>
         <div class="social-row">
           <a class="social-chip" href="https://x.com/tellsgroup" target="_blank" rel="noopener noreferrer" aria-label="Tellsgroup on X">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
@@ -588,7 +593,7 @@
         </div>
         <div class="cat-panel-title">
           <strong>Tells Cat</strong>
-          <small>Online · Replies instantly</small>
+          <small>Online · Meow Meow</small>
         </div>
         <button id="catClose" type="button" aria-label="Close chat">
           <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
@@ -619,7 +624,7 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 
 
-</body></html>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a296056728ab47e8',t:'MTc4NjQzODUyNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
