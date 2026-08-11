@@ -167,6 +167,152 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
+// ------------------------------------------------------------------
+// Typewriter effect — "What we are not" section.
+// The paragraph is rebuilt as word/character spans that stay in their
+// final layout positions but invisible, then appear one by one like
+// typing — so the big headline never reflows while it "types".
+// ------------------------------------------------------------------
+(function () {
+  const antiCopy = document.querySelector(".anti-section .anti-copy");
+  if (!antiCopy) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  const fullText = antiCopy.textContent.trim().replace(/\s+/g, " ");
+
+  // Reduced motion or no IntersectionObserver: keep the plain text.
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
+
+  antiCopy.setAttribute("aria-label", fullText);
+  antiCopy.textContent = "";
+
+  const words = fullText.split(" ");
+  const charSpans = [];
+
+  words.forEach((word, index) => {
+    const wordSpan = document.createElement("span");
+    wordSpan.className = "type-word";
+    wordSpan.setAttribute("aria-hidden", "true");
+
+    for (const letter of word) {
+      const charSpan = document.createElement("span");
+      charSpan.className = "type-char";
+      charSpan.textContent = letter;
+      wordSpan.appendChild(charSpan);
+      charSpans.push(charSpan);
+    }
+
+    antiCopy.appendChild(wordSpan);
+    if (index < words.length - 1) {
+      antiCopy.appendChild(document.createTextNode(" "));
+    }
+  });
+
+  // Orange block cursor that follows the typed letters
+  const cursor = document.createElement("span");
+  cursor.className = "type-cursor";
+  cursor.setAttribute("aria-hidden", "true");
+
+  let started = false;
+  let position = 0;
+
+  function typeNext() {
+    if (position >= charSpans.length) {
+      // Finished: let the cursor blink ~2s, then fade it away
+      window.setTimeout(() => cursor.classList.add("is-hidden"), 2000);
+      return;
+    }
+
+    const charSpan = charSpans[position];
+    charSpan.classList.add("is-typed");
+    charSpan.after(cursor);
+
+    const letter = charSpan.textContent;
+    let delay = 24 + Math.random() * 26; // human-ish typing jitter
+    if (letter === ",") delay = 220;     // pause on commas
+    if (letter === ".") delay = 360;     // longer pause on the full stop
+
+    position += 1;
+    window.setTimeout(typeNext, delay);
+  }
+
+  const typeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          typeObserver.disconnect();
+          window.setTimeout(typeNext, 400); // small beat before typing starts
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  typeObserver.observe(antiCopy);
+})();
+
+// ------------------------------------------------------------------
+// Animated count-up — "18 Tells brands" stat in the stats band.
+// Counts from 1 to 18 with an ease-out curve when scrolled into view.
+// ------------------------------------------------------------------
+(function () {
+  const statsBand = document.querySelector(".stats-band");
+  if (!statsBand) return;
+  const numberEl = statsBand.querySelector("strong");
+  if (!numberEl) return;
+
+  const target = 18;
+  const duration = 1500; // ms
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    numberEl.textContent = String(target);
+    return;
+  }
+
+  let played = false;
+
+  function countUp() {
+    const startTime = performance.now();
+    numberEl.textContent = "1";
+
+    function frame(now) {
+      const progress = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      numberEl.textContent = String(Math.max(1, Math.round(eased * target)));
+
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        numberEl.textContent = String(target);
+        numberEl.classList.add("count-finished"); // triggers the pop
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !played) {
+          played = true;
+          countObserver.disconnect();
+          countUp();
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  countObserver.observe(statsBand);
+})();
+
 
 // --- Yoga figure blessing: click/tap to toggle on touch devices ---
 const yogaFigure = document.querySelector(".yoga-figure");

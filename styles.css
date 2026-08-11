@@ -315,7 +315,6 @@ a {
   font-weight: 700;
 }
 
-
 body.menu-open {
   overflow: hidden;
 }
@@ -495,6 +494,67 @@ h2 {
   transition: opacity 220ms ease, filter 220ms ease;
 }
 
+/* Thought-bubble trail — rising dots from the editor's head to the
+   floating Tells logo, so the scene reads as "in his mind, it's tells". */
+.thought-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.thought-dots span {
+  position: absolute;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: #fff6ec;
+  box-shadow: 2px 2px 0 rgba(23, 17, 15, 0.22);
+  animation: thoughtBob 4s ease-in-out infinite alternate;
+}
+
+.thought-dots span:nth-child(1) {
+  left: 56%;
+  top: 25%;
+  width: 10px;
+  height: 10px;
+}
+
+.thought-dots span:nth-child(2) {
+  left: 65%;
+  top: 16.5%;
+  width: 14px;
+  height: 14px;
+  animation-delay: 350ms;
+}
+
+.thought-dots span:nth-child(3) {
+  left: 73.5%;
+  top: 9%;
+  width: 18px;
+  height: 18px;
+  animation-delay: 700ms;
+}
+
+@keyframes thoughtBob {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 0.95;
+  }
+
+  to {
+    transform: translateY(-8px) scale(1.08);
+    opacity: 0.65;
+  }
+}
+
+/* When the editor is interrupted (hover reveals the HI badge),
+   the thought trail pops away along with the logo. */
+.thinker-animation:hover .thought-dots,
+.thinker-animation:focus-within .thought-dots {
+  opacity: 0;
+}
+
 .hello-badge {
   position: absolute;
   top: 252px;
@@ -564,15 +624,114 @@ h2 {
 }
 
 .neck,
-.head,
-.arm-left,
-.arm-right,
-.hand-left,
-.hand-right {
+.head {
   fill: #de9368;
   stroke: var(--ink);
   stroke-width: 7;
   stroke-linejoin: round;
+}
+
+.ear {
+  fill: #de9368;
+  stroke: var(--ink);
+  stroke-width: 5;
+}
+
+/* side-profile ear: a real drawn ear (helix + inner fold) rather than
+   a plain circle, so the typing pose reads anatomically */
+.ear-side {
+  fill: #de9368;
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chair-back {
+  fill: #2a211d;
+  stroke: var(--ink);
+  stroke-width: 6;
+}
+
+/* long shirt sleeves: thick ink outline under a red stroke */
+.arm-ink {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 26;
+  stroke-linecap: round;
+}
+
+.arm-sleeve {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 15;
+  stroke-linecap: round;
+}
+
+.hand,
+.finger {
+  fill: #de9368;
+  stroke: var(--ink);
+  stroke-linejoin: round;
+}
+
+.hand {
+  stroke-width: 6;
+}
+
+.finger {
+  stroke-width: 3.5;
+}
+
+/* glasses — translucent cream lenses, ink frames, tiny glints */
+.glasses .lens {
+  fill: #fff6ec;
+  fill-opacity: 0.3;
+  stroke: var(--ink);
+  stroke-width: 4.5;
+}
+
+.frame-link,
+.temple {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+}
+
+.lens-glint {
+  fill: none;
+  stroke: #fff6ec;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.nose {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+/* side-profile nostril crease — softer than the ink outline so the
+   nose reads as a form {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+
+/* laptop details */
+.screen-panel {
+  fill: #4d4139;
+}
+
+.keys line {
+  stroke: #fff6ec;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  opacity: 0.45;
 }
 
 .hair,
@@ -580,48 +739,191 @@ h2 {
 .eye-right {
   fill: var(--ink);
 }
+/* soft hairline crease inside the crop {
+  fill: none;
+  stroke: #3a2c26;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+/* curl strokes inside the hair mass — lighter than the ink outline so
+   the coils read as texture instead of extra hard edges */
+.hair-curl {
+  fill: none;
+  stroke: #4a3a32;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
 
 .brow,
 .mouth {
   fill: none;
   stroke: var(--ink);
-  stroke-width: 6;
+  stroke-width: 4.5;
   stroke-linecap: round;
 }
 
-.head-group {
-  transform-origin: 320px 190px;
-  animation: headNod 3.6s ease-in-out infinite alternate;
+/* Head turn: side profile while typing; on hover it whips toward us —
+   fast exit, springy arrival with a tiny nod, not a flat flip */
+.head-side,
+.head-front {
+  transform-origin: 305px 210px;
 }
 
-.arm-right,
-.hand-right {
-  transform-origin: 386px 394px;
-  animation: thinkingHand 2.6s ease-in-out infinite alternate;
+.head-side {
+  transition: transform 180ms cubic-bezier(0.55, 0, 0.55, 0.2), opacity 140ms ease;
+}
+
+/* the front-facing head reads slightly larger than the profile — it
+   scales up from the jaw so the chin stays locked to the neck */
+.head-front {
+  transform-origin: 305px 246px;
+  transform: scaleX(0) scaleY(1.12) rotate(-8deg);
+  opacity: 0;
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.9, 0.25, 1.3) 100ms,
+    opacity 160ms ease 100ms;
+}
+
+.thinker-animation:hover .head-side,
+.thinker-animation:focus-within .head-side {
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.thinker-animation:hover .head-front,
+.thinker-animation:focus-within .head-front {
+  transform: scale(1.12) rotate(0deg);
+  opacity: 1;
+}
+/* sleeve cap: covers each arm root so the shoulder joint reads as
+   a finished shirt sleeve {
+  fill: var(--red);
+  stroke: var(--ink);
+  stroke-width: 6;
+}
+
+/* typing: both hands tap the keys in an alternating rhythm */
+.typing-hand {
+  transform-box: fill-box;
+  animation: typeTap 0.34s ease-in-out infinite alternate;
+}
+
+.hand-front {
+  animation-delay: 170ms;
+}
+
+/* far arm reads slightly darker for depth */
+.hand.far,
+.finger.far {
+  fill: #cd8256;
+}
+
+.ear-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+/* sleeve cuff band at the wrist */
+.cuff {
+  fill: #fff6ec;
+  stroke: var(--ink);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+@keyframes typeTap {
+  from {
+    transform: translateY(-3px) rotate(-3deg);
+  }
+
+  to {
+    transform: translateY(3px) rotate(2deg);
+  }
+}
+
+/* hover: typing freezes, his head faces us, and his near hand
+   rises above his head to wave hi */
+.thinker-animation:hover .typing-hand,
+.thinker-animation:focus-within .typing-hand {
+  animation-play-state: paused;
+}
+
+.arm-front-group {
+  transition: opacity 200ms ease, transform 260ms ease;
+}
+
+/* the far arm stops typing and settles into a relaxed rest on the desk
+   as he turns to wave — it stays visible, it just stops working */
+.arm-back-group {
+  transform-origin: 298px 306px;
+  transition: transform 320ms cubic-bezier(0.3, 0.7, 0.3, 1) 40ms;
+}
+
+.thinker-animation:hover .arm-back-group,
+.thinker-animation:focus-within .arm-back-group {
+  transform: translate(6px, 6px);
+}
+
+/* hover: the typing hand dips away... */
+.thinker-animation:hover .arm-front-group,
+.thinker-animation:focus-within .arm-front-group {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ...and a purpose-drawn open palm springs up from his shoulder
+   and waves — same swap pattern as the yoga blessing arm */
+.arm-wave-group {
+  transform-origin: 302px 300px;
+  opacity: 0;
+  transform: rotate(24deg);
+  transition:
+    opacity 160ms ease,
+    transform 400ms cubic-bezier(0.2, 0.9, 0.3, 1.25);
+}
+
+.thinker-animation:hover .arm-wave-group,
+.thinker-animation:focus-within .arm-wave-group {
+  opacity: 1;
+  transform: rotate(0deg);
+  animation: waveSideHi 520ms ease-in-out 420ms infinite alternate;
+}
+
+/* the waving hand is one continuous silhouette (palm + fingers + thumb
+   in a single path) so no seams or stray outlines show through */
+.wave-part {
+  fill: #de9368;
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+@keyframes waveSideHi {
+  from {
+    transform: rotate(-10deg);
+  }
+
+  to {
+    transform: rotate(8deg);
+  }
 }
 
 .screen {
   fill: #2a211d;
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linejoin: round;
 }
 
 .base {
   fill: var(--ink);
-}
-
-.code-line {
-  stroke: var(--cream);
-  stroke-width: 8;
-  stroke-linecap: round;
-  opacity: 0.92;
-  animation: codeBlink 2.4s ease-in-out infinite;
-}
-
-.line-two {
-  animation-delay: 220ms;
-}
-
-.line-three {
-  animation-delay: 440ms;
 }
 
 .spark-one,
@@ -702,6 +1004,49 @@ h2 {
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: 0;
+}
+
+/* Typewriter effect — characters stay in place (invisible) so the
+   headline never reflows, and appear one at a time. */
+.type-word {
+  display: inline-block; /* keeps each word atomic — no mid-word breaks */
+  white-space: nowrap;
+}
+
+.type-char {
+  opacity: 0;
+}
+
+.type-char.is-typed {
+  opacity: 1;
+}
+
+/* Blinking orange block cursor that trails the typed letters */
+.type-cursor {
+  display: inline-block;
+  width: 0.055em;
+  min-width: 3px;
+  height: 0.78em;
+  margin-left: 0.04em;
+  background: #ff8a2b;
+  transform: translateY(0.1em);
+  animation: typeCursorBlink 840ms ease-in-out infinite;
+}
+
+.type-cursor.is-hidden {
+  animation: none;
+  opacity: 0;
+  transition: opacity 480ms ease;
+}
+
+@keyframes typeCursorBlink {
+  0%, 45% {
+    opacity: 1;
+  }
+
+  55%, 100% {
+    opacity: 0;
+  }
 }
 
 .statement-section {
@@ -920,9 +1265,6 @@ h2 {
   stroke-linejoin: round;
   stroke-linecap: round;
 }
-.yoga-blessing-hand-fill { display: none; }
-.yoga-blessing-thumb-outline,
-.yoga-blessing-thumb { display: none; }
 .yoga-blessing-finger-line {
   stroke: var(--ink);
   stroke-width: 1.8;
@@ -939,14 +1281,6 @@ h2 {
   stroke-width: 1.8;
   stroke-linecap: round;
   fill: none;
-  opacity: 0.4;
-}
-.yoga-blessing-palm-line-soft {
-  stroke-width: 1.4;
-  opacity: 0.32;
-}
-.yoga-blessing-thumb-crease {
-  stroke-width: 1.6;
   opacity: 0.4;
 }
 
@@ -1208,38 +1542,6 @@ h2 {
   z-index: 2;
 }
 
-.calm-mark {
-  position: absolute;
-  right: 40%;
-  bottom: 104px;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 34px);
-  gap: 12px;
-  pointer-events: none;
-}
-
-.calm-mark span {
-  display: block;
-  width: 34px;
-  height: 34px;
-  border: 4px solid var(--ink);
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 5px 5px 0 var(--ink);
-  animation: calmBounce 2.6s ease-in-out infinite;
-}
-
-.calm-mark span:nth-child(2) {
-  background: #ff8a2b;
-  animation-delay: 180ms;
-}
-
-.calm-mark span:nth-child(3) {
-  background: var(--cream);
-  animation-delay: 360ms;
-}
-
 .stats-band {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1270,6 +1572,31 @@ h2 {
 .stats-band span {
   color: var(--muted);
   font-weight: 900;
+}
+
+/* Count-up stat — steady digit widths while 1 → 18 ticks, then a
+   red "pop" when the number lands on 18. */
+.stats-band strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-band strong.count-finished {
+  animation: statCountPop 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes statCountPop {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.22);
+    color: var(--red);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .goals-stage {
@@ -1867,39 +2194,6 @@ h2 {
   }
 }
 
-@keyframes headNod {
-  from {
-    transform: rotate(-1.8deg) translateY(0);
-  }
-
-  to {
-    transform: rotate(2deg) translateY(-5px);
-  }
-}
-
-@keyframes thinkingHand {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate(4px, -6px) rotate(-2deg);
-  }
-}
-
-@keyframes codeBlink {
-  0%,
-  100% {
-    opacity: 0.34;
-    stroke-dasharray: 24 18;
-  }
-
-  50% {
-    opacity: 1;
-    stroke-dasharray: 120 8;
-  }
-}
-
 @keyframes sparkTwinkle {
   from {
     transform: scale(0.82) rotate(0deg);
@@ -1921,7 +2215,6 @@ h2 {
     transform: translateY(-7px) scale(1.04) rotate(2deg);
   }
 }
-
 
 @keyframes headerDropIn {
   from {
@@ -2023,12 +2316,6 @@ h2 {
     margin: 0 auto;
   }
 
-  .calm-mark {
-    right: 28px;
-    bottom: 34px;
-    opacity: 0.34;
-  }
-
   .hero-visual {
     min-height: 420px;
   }
@@ -2075,10 +2362,6 @@ h2 {
   .to-top {
     width: 44px;
     height: 44px;
-  }
-
-  .calm-mark {
-    display: none;
   }
 
   .hero-visual {
