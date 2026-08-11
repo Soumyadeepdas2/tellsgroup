@@ -1361,7 +1361,8 @@ h2 {
 .yoga-foot {
   fill: #de9368;
   stroke: var(--ink);
-  stroke-width: 7;
+  stroke-width: 5;
+  stroke-linejoin: round;
 }
 
 .yoga-torso {
@@ -1421,12 +1422,12 @@ h2 {
 }
 
 .yoga-shin-ink {
-  stroke-width: 30;
+  stroke-width: 26;
 }
 
 .yoga-shin {
   stroke: #de9368;
-  stroke-width: 18;
+  stroke-width: 15;
   stroke-linecap: round;
   fill: none;
 }
@@ -1434,7 +1435,24 @@ h2 {
 .yoga-hand {
   fill: #de9368;
   stroke: var(--ink);
-  stroke-width: 7;
+  stroke-width: 6;
+  stroke-linejoin: round;
+}
+
+.yoga-toe-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+
+.yoga-finger-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: 0.5;
 }
 
 .yoga-body {

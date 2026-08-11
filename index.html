@@ -6,7 +6,7 @@
   <title>Tellsgroup | Media House</title>
   <meta name="description" content="Tellsgroup is the parent company behind focused Tells brands across news, India, cricket, business, technology, and culture.">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="16x16" href="F:\projects\tellsgroup3\assets\tells-logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -223,37 +223,63 @@
           <path class="yoga-blob" d="M86 368c-44-57-35-148 16-214C160 79 250 37 338 59c82 20 140 99 143 180 3 79-47 155-120 190-89 43-219 15-275-61Z"/>
           <g class="yoga-body">
             <rect class="yoga-mat" x="150" y="452" width="260" height="18" rx="9"/>
-            <path class="yoga-legs" d="M216 336 C214 420 230 448 280 448 C330 448 346 420 344 336 C344 328 316 320 280 320 C244 320 216 328 216 336 Z"/>
-            <path class="yoga-shin-ink shin-left" d="M250 336 C 266 358, 282 378, 296 398"/>
-            <path class="yoga-shin shin-left" d="M250 336 C 266 358, 282 378, 296 398"/>
-            <path class="yoga-shin-ink shin-right" d="M310 336 C 294 358, 278 378, 264 398"/>
-            <path class="yoga-shin shin-right" d="M310 336 C 294 358, 278 378, 264 398"/>
-            <ellipse class="yoga-foot" cx="218" cy="434" rx="17" ry="11"/>
-            <ellipse class="yoga-foot" cx="342" cy="434" rx="17" ry="11"/>
+            <!-- Folded legs (padmasana): lap mass, shins folding in, feet sole-up on the lap -->
+            <path class="yoga-legs" d="M236 336 C 206 356, 184 390, 182 418 C 180 439, 196 449, 218 449 L342 449 C 364 449, 380 439, 378 418 C 376 390, 354 356, 324 336 Z"/>
+
+            <!-- Shins fold from each knee inward; the ends tuck under the feet -->
+            <path class="yoga-shin-ink shin-left" d="M206 412 C 218 424, 230 430, 242 430"/>
+            <path class="yoga-shin shin-left" d="M206 412 C 218 424, 230 430, 242 430"/>
+            <path class="yoga-shin-ink shin-right" d="M354 412 C 342 424, 330 430, 318 430"/>
+            <path class="yoga-shin shin-right" d="M354 412 C 342 424, 330 430, 318 430"/>
+
+            <!-- Feet resting sole-up on the lap, toes pointing outward -->
+            <g class="yoga-foot-group" transform="translate(262 422) rotate(-12)">
+              <path class="yoga-foot" d="M 4 -15 C -4 -15, -12 -14, -16 -11 C -20 -9, -21 -5, -18 -3 C -21 -1, -21 2, -18 4 C -20 6, -19 9, -15 10 C -12 13, -4 15, 4 15 C 14 15, 21 9, 21 0 C 21 -9, 14 -15, 4 -15 Z"/>
+              <path class="yoga-toe-line" d="M -17 -7 C -13 -7, -11 -7, -9 -6"/>
+              <path class="yoga-toe-line" d="M -18 -3 C -14 -3, -12 -3, -10 -3"/>
+              <path class="yoga-toe-line" d="M -18 4  C -14 4, -12 3, -10 3"/>
+              <path class="yoga-toe-line" d="M -16 9  C -13 8, -11 8, -9 7"/>
+            </g>
+            <g class="yoga-foot-group" transform="translate(298 422) rotate(12) scale(-1 1)">
+              <path class="yoga-foot" d="M 4 -15 C -4 -15, -12 -14, -16 -11 C -20 -9, -21 -5, -18 -3 C -21 -1, -21 2, -18 4 C -20 6, -19 9, -15 10 C -12 13, -4 15, 4 15 C 14 15, 21 9, 21 0 C 21 -9, 14 -15, 4 -15 Z"/>
+              <path class="yoga-toe-line" d="M -17 -7 C -13 -7, -11 -7, -9 -6"/>
+              <path class="yoga-toe-line" d="M -18 -3 C -14 -3, -12 -3, -10 -3"/>
+              <path class="yoga-toe-line" d="M -18 4  C -14 4, -12 3, -10 3"/>
+              <path class="yoga-toe-line" d="M -16 9  C -13 8, -11 8, -9 7"/>
+            </g>
+
             <path class="yoga-torso" d="M222 234 C218 268 222 300 232 328 C240 346 258 354 280 354 C302 354 320 346 328 328 C338 300 342 268 338 234 C336 218 322 212 280 212 C238 212 224 218 222 234 Z"/>
 
-            <!-- Left arm (her left, our right) stays in lap -->
-            <path class="yoga-arm-ink arm-right" d="M320 236 C 330 278, 326 318, 308 350"/>
-            <path class="yoga-arm arm-right" d="M320 236 C 330 278, 326 318, 308 350"/>
-
-            <!-- Right arm (her right, our left) in meditation mudra by default -->
-            <g class="yoga-arm-resting">
-              <path class="yoga-arm-ink arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
-              <path class="yoga-arm arm-left" d="M240 236 C 230 278, 234 318, 252 350"/>
-              <circle class="yoga-hand yoga-hand-resting" cx="254" cy="352" r="13"/>
+            <!-- Left arm (her left, our right) rests on the knee -->
+            <path class="yoga-arm-ink arm-right" d="M320 236 C 336 292, 352 350, 358 398"/>
+            <path class="yoga-arm arm-right" d="M320 236 C 336 292, 352 350, 358 398"/>
+            <g class="yoga-hand-group" transform="translate(359 412)">
+              <path class="yoga-hand" d="M -11 -10 C -14 -6, -15 2, -13 8 C -12 13, -7 15, -4 11 C -2 15, 3 15, 4 10 C 6 14, 11 13, 12 7 C 14 1, 13 -6, 10 -10 C 6 -14, -7 -14, -11 -10 Z"/>
+              <path class="yoga-finger-line" d="M -4 11 C -4 5, -4 0, -5 -4"/>
+              <path class="yoga-finger-line" d="M 4 10 C 4 4, 4 -1, 3 -5"/>
             </g>
-            <circle class="yoga-hand" cx="306" cy="352" r="13"/>
+
+            <!-- Right arm (her right, our left) rests on the knee until the blessing -->
+            <g class="yoga-arm-resting">
+              <path class="yoga-arm-ink arm-left" d="M240 236 C 224 292, 208 350, 202 398"/>
+              <path class="yoga-arm arm-left" d="M240 236 C 224 292, 208 350, 202 398"/>
+              <g class="yoga-hand-group" transform="translate(201 412) scale(-1 1)">
+                <path class="yoga-hand" d="M -11 -10 C -14 -6, -15 2, -13 8 C -12 13, -7 15, -4 11 C -2 15, 3 15, 4 10 C 6 14, 11 13, 12 7 C 14 1, 13 -6, 10 -10 C 6 -14, -7 -14, -11 -10 Z"/>
+                <path class="yoga-finger-line" d="M -4 11 C -4 5, -4 0, -5 -4"/>
+                <path class="yoga-finger-line" d="M 4 10 C 4 4, 4 -1, 3 -5"/>
+              </g>
+            </g>
 
             <!-- Blessing mudra (abhaya) — hidden until hover -->
             <g class="yoga-blessing" opacity="0">
               <!-- divine saffron glow behind the raised palm -->
-              <circle class="yoga-blessing-glow" cx="190" cy="156" r="42"/>
-              <circle class="yoga-blessing-glow-ring" cx="190" cy="156" r="52"/>
+              <circle class="yoga-blessing-glow" cx="178" cy="114" r="42"/>
+              <circle class="yoga-blessing-glow-ring" cx="178" cy="114" r="52"/>
               <!-- raised right arm (ink outline + skin fill) -->
-              <path class="yoga-arm-ink yoga-blessing-arm-ink" d="M240 236 C 220 224 202 210 192 196" stroke-linecap="round"/>
-              <path class="yoga-arm yoga-blessing-arm" d="M240 236 C 220 224 202 210 192 196" stroke-linecap="round"/>
+              <path class="yoga-arm-ink yoga-blessing-arm-ink" d="M240 236 C 224 220, 200 190, 180 154" stroke-linecap="round"/>
+              <path class="yoga-arm yoga-blessing-arm" d="M240 236 C 224 220, 200 190, 180 154" stroke-linecap="round"/>
               <!-- hand: abhaya/ashirvad mudra scaled around wrist joint (192, 196) -->
-              <g transform="translate(192, 196) scale(0.64) translate(-192, -196)">
+              <g transform="translate(-12, -42) translate(192, 196) scale(0.64) translate(-192, -196)">
                 <g class="yoga-blessing-hand">
                   <path class="yoga-blessing-hand-outline" d="
                     M 176 196
@@ -262,8 +288,8 @@
                     C 175 106, 177 114, 177 120
                     C 177 104, 179 90, 183 90
                     C 187 90, 189 100, 189 112
-                    C 189 98, 191 82, 196 82
-                    C 201 82, 203 94, 203 108
+                    C 189 98, 192 82, 196 82
+                    C 200 82, 202 94, 203 108
                     C 203 98, 204 86, 208 86
                     C 212 86, 214 96, 213 114
                     C 213 130, 211 142, 209 148
@@ -460,17 +486,17 @@
       </div>
 
       <div class="contact-cards">
-        <a class="contact-card" href="/cdn-cgi/l/email-protection#f39b969f9f9cb387969f9f8094819c8683dd909c9e">
+        <a class="contact-card" href="mailto:hello@tellsgroup.com">
           <span class="contact-card-index">01</span>
           <strong>Launch a brand</strong>
           <p>New verticals, naming, positioning.</p>
         </a>
-        <a class="contact-card" href="/cdn-cgi/l/email-protection#9bf3fef7f7f4dbeffef7f7e8fce9f4eeebb5f8f4f6">
+        <a class="contact-card" href="mailto:hello@tellsgroup.com">
           <span class="contact-card-index">02</span>
           <strong>Editorial partnership</strong>
           <p>Collaborations and syndication.</p>
         </a>
-        <a class="contact-card" href="/cdn-cgi/l/email-protection#6d05080101022d190801011e0a1f02181d430e0200">
+        <a class="contact-card" href="mailto:hello@tellsgroup.com">
           <span class="contact-card-index">03</span>
           <strong>Press &amp; media</strong>
           <p>Interviews, quotes, background.</p>
@@ -478,7 +504,7 @@
       </div>
 
       <div class="contact-closer">
-        <a class="round-button dark" href="/cdn-cgi/l/email-protection#91f9f4fdfdfed1e5f4fdfde2f6e3fee4e1bff2fefc"><span class="__cf_email__" data-cfemail="85ede0e9e9eac5f1e0e9e9f6e2f7eaf0f5abe6eae8">[email&#160;protected]</span></a>
+        <a class="round-button dark" href="mailto:hello@tellsgroup.com">hello@tellsgroup.com</a>
         <div class="social-row">
           <a class="social-chip" href="https://x.com/tellsgroup" target="_blank" rel="noopener noreferrer" aria-label="Tellsgroup on X">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
@@ -593,8 +619,7 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+  <script src="script.js"></script>
 
 
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f"}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a294b4f86ffec116',t:'MTc4NjQyNDc0Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+</body></html>
