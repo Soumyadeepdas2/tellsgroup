@@ -1029,9 +1029,12 @@ h2 {
   background: var(--cream);
 }
 
-.round-button.dark:hover {
-  color: var(--cream);
-  background: transparent;
+.round-button.dark:hover,
+.round-button.dark:focus-visible {
+  color: var(--ink);
+  border-color: #ff8a2b;
+  background: #ff8a2b;
+  outline: none;
 }
 
 .anti-section {
@@ -1626,6 +1629,10 @@ h2 {
 }
 
 .stats-band strong {
+  /* Keep the count-up pop as wide as its digits instead of scaling a
+     full-width block, which caused horizontal overflow on phones. */
+  width: max-content;
+  transform-origin: left center;
   font-family: "Space Grotesk", "Manrope", Arial, sans-serif;
   font-size: 2.2rem;
   letter-spacing: 0;
@@ -2118,7 +2125,7 @@ h2 {
   color: rgba(243, 234, 219, 0.75);
 }
 
-/* Closer row — email button + social chips */
+/* Closer row — contact/developer buttons + social chips */
 .contact-closer {
   position: relative;
   z-index: 1;
@@ -2128,6 +2135,27 @@ h2 {
   flex-wrap: wrap;
   gap: 16px 24px;
   padding-top: clamp(8px, 2vw, 20px);
+}
+
+.contact-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.developer-button {
+  color: var(--ink);
+  border-color: #ff8a2b;
+  background: #ff8a2b;
+}
+
+.developer-button:hover,
+.developer-button:focus-visible {
+  color: #ff8a2b;
+  border-color: #ff8a2b;
+  background: transparent;
+  outline: none;
 }
 
 /* Social chips — black squares, orange icons, same language as the
@@ -2188,17 +2216,30 @@ h2 {
   box-shadow: 2px 2px 0 rgba(23, 17, 15, 0.35);
 }
 
-.contact-copy {
-  display: block;
+.contact-footer {
   position: relative;
   z-index: 1;
-  margin-top: clamp(18px, 3vw, 30px);
-  /* extra bottom space to clear the cat + back-to-top FABs
-     so they never cover the copyright or social chips */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-top: clamp(28px, 4vw, 48px);
+  /* extra bottom space clears the cat + back-to-top controls */
   padding-bottom: clamp(140px, 20vh, 180px);
+}
+
+.footer-logo {
+  display: block;
+  width: clamp(150px, 17vw, 230px);
+  height: auto;
+}
+
+.contact-copy {
+  display: block;
   color: rgba(243, 234, 219, 0.6);
   font-size: 0.85rem;
   font-weight: 700;
+  text-align: left;
 }
 
 .reveal-item {
@@ -2506,6 +2547,18 @@ h2 {
   .social-chip svg {
     width: 19px;
     height: 19px;
+  }
+
+  .footer-logo {
+    width: 130px;
+  }
+
+  .contact-footer {
+    gap: 10px;
+  }
+
+  .contact-copy {
+    font-size: 0.76rem;
   }
 
 }

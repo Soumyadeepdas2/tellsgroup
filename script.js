@@ -553,7 +553,7 @@ if (yogaFigure) {
   });
 })();
 
-/* ---- Scroll progress (percentage + bar under the menu button) ---- */
+/* ---- Scroll percentage under the menu button ---- */
 (function () {
   var out = document.getElementById("scrollProgress");
   if (!out) return;
